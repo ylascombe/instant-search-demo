@@ -15,3 +15,7 @@ jobs:
         - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin 
         - docker build -t kristoyoyo/instant-search:v0.0.1 .
         - docker image push kristoyoyo/instant-search:v0.0.1
+    - stage: docker-scan
+      script: 
+        - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin 
+        - docker scan kristoyoyo/instant-search:v0.0.1
