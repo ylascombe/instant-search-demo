@@ -69,3 +69,10 @@ We've extracted 20 000+ products from the [Best Buy Developer API](https://devel
 
 A more general overview of filtering and faceting is available in a [dedicated tutorial](https://www.algolia.com/doc/tutorials/search-ui/instant-search/filtering/faceting-search-ui/instantsearchjs/).
 
+# Local run with docker / docker-compose
+
+Launch following command to build and run application:
+
+```sh
+docker-compose up
+```

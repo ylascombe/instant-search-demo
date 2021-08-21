@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+  # dataset:
+  #   build: ./dataset_import/
+  #   env_file:
+  #   - .env
+  #     #    environment:
+  #     #      - APPLICATION_ID=${APPLICATION_ID}
+  #     #      - ADMIN_API_KEY=${ADMIN_API_KEY}
+  #     #      - INDEX_NAME=${INDEX_NAME}
+  #   depends_on:
+  #     - web
