@@ -19,3 +19,32 @@ jobs:
       script: 
         - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin 
         - docker scan kristoyoyo/instant-search:v0.0.1
+        # TODO use CI_COMMIT_SHORT_SHA travis equivalent instead of fixed version
+
+    - stage: trivy
+      image:
+        name: knqyf263/trivy
+        entrypoint: [""]
+        variables:
+          TRIVY_AUTH_URL: hub.docker.com
+          TRIVY_USERNAME: $REGISTRY_USER
+          TRIVY_PASSWORD: $REGISTRY_PASS
+      tags:
+        - trivy
+      script:
+        - trivy --cache-dir .cache \
+          --exit-code 1 \
+          --severity HIGH,CRITICAL \
+          --format table --output report.md  \
+          --vuln-type os \
+          kristoyoyo/instant-search::v0.0.1
+      cache:
+        key: trivy-cache
+        paths:
+          - .cache
+      artifacts:
+          name: "Container Scan Report v0.0.1"
+          paths:
+            - report.md
+          expire_in: 7 days
+          when: on_failure
