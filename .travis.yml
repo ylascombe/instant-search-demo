@@ -6,3 +6,12 @@ branches:
 cache:
    directories:
     - node_modules
+services:
+  - docker
+jobs:
+  include:
+    - stage: build-docker-image
+      script: 
+        - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin 
+        - docker build -t kristoyoyo/instant-search:v0.0.1 .
+        - docker image push kristoyoyo/instant-search:v0.0.1
