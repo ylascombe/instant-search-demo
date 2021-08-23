@@ -10,3 +10,4 @@ RUN npm install --only=prod
 CMD ["npm", "start"]
 
 # TODO determine if multi stage build interesting here ? 
+# TODO do not run with root user

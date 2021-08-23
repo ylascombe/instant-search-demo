@@ -8,3 +8,4 @@ WORKDIR /dataset_import/
 COPY . .
 CMD ["./push.rb", ${APPLICATION_ID}, ${ADMIN_API_KEY}, ${INDEX_NAME}]
 
+# TODO do not run with root user
