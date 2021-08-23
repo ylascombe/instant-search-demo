@@ -44,5 +44,7 @@ jobs:
           expire_in: 7 days
           when: on_failure
 
-
+    - stage: deploy-integration
+      script:
+        - echo "Deploy instant-search on a new env that use ArgoCD consist only to deploy project (argoproj.io/v1alpha1.AppProject) and application (argoproj.io/v1alpha1.Application)"
 
