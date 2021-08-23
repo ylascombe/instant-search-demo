@@ -1,3 +1,9 @@
 module.exports = {
-  extends: 'algolia'
+  "plugins": [
+    "security"
+  ],
+  extends: [
+    'algolia',
+    "plugin:security/recommended"
+  ]
 };
