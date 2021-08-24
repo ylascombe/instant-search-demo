@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "instant-search.labels" . | nindent 4 }}
 spec:
-  ingressClassName: nginx-controller
+  ingressClassName: nginx
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}
@@ -27,14 +27,9 @@ spec:
             pathType: {{ .pathType }}
             {{- end }}
             backend:
-              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
                 name: instant-search
                 port:
                   number: 8080
-              {{- else }}
-              serviceName: instant-search
-              servicePort: 8080
-              {{- end }}
           {{- end }}
     {{- end }}
