@@ -44,9 +44,15 @@ jobs:
           expire_in: 7 days
           when: on_failure
 
+    - stage: tag-docker-image-latest
+      script: 
+        - docker image pull kristoyoyo/instant-search:${COMMIT}
+        - docker image tag kristoyoyo/instant-search:${COMMIT} kristoyoyo/instant-search:latest
+        - docker image push kristoyoyo/instant-search:latest
+
     - stage: deploy-integration
       script:
         - echo "Deploy instant-search on a new env that use ArgoCD consist only to deploy project (argoproj.io/v1alpha1.AppProject) and application (argoproj.io/v1alpha1.Application)"
 
   allow_failures:
-    - stage: container-composition-analysis-trivy
+    - stage: container-composition-analysis-trivy # TODO remove me after have fixed issues
