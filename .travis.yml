@@ -46,6 +46,7 @@ jobs:
 
     - stage: tag-docker-image-latest
       script: 
+        - echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin 
         - docker image pull kristoyoyo/instant-search:${COMMIT}
         - docker image tag kristoyoyo/instant-search:${COMMIT} kristoyoyo/instant-search:latest
         - docker image push kristoyoyo/instant-search:latest
